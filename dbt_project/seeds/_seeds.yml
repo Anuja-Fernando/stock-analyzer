@@ -1,0 +1,12 @@
+version: 2
+
+seeds:
+  - name: holdings
+    description: Your positions (edit this file). avg_cost is per share in the stock's own currency.
+    columns:
+      - name: ticker
+        tests: [not_null, unique]
+      - name: currency
+        tests:
+          - accepted_values:
+              values: ["USD", "INR"]

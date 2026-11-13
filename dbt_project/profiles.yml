@@ -1,0 +1,10 @@
+portfolio_risk:
+  target: dev
+  outputs:
+    dev:
+      type: mysql
+      server: "{{ env_var('MYSQL_HOST', 'localhost') }}"
+      port: "{{ env_var('MYSQL_PORT', '3306') | as_number }}"
+      schema: stocks_analytics
+      username: "{{ env_var('MYSQL_USER') }}"
+      password: "{{ env_var('MYSQL_PASSWORD') }}"

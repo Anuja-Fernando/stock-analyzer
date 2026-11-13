@@ -1,0 +1,34 @@
+name: portfolio_risk
+version: "1.0.0"
+config-version: 2
+profile: portfolio_risk
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+# Alert thresholds: change them here, no SQL edits needed.
+vars:
+  max_drawdown_pct: 10
+  max_daily_move_pct: 3
+  max_volatility_pct: 30
+  max_sector_weight_pct: 40
+  max_position_weight_pct: 30
+
+seeds:
+  portfolio_risk:
+    holdings:
+      +column_types:
+        ticker: varchar(16)
+        shares: decimal(18,4)
+        avg_cost: decimal(18,4)
+        currency: varchar(3)
+
+models:
+  portfolio_risk:
+    staging:
+      +materialized: view
+    marts:
+      +materialized: table

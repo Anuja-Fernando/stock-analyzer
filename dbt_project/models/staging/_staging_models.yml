@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: stg_stock_prices
+    description: Raw daily closes, one row per ticker and trading day.
+    columns:
+      - name: ticker
+        tests: [not_null]
+      - name: trade_date
+        tests: [not_null]
+  - name: stg_fx_rates
+    description: USD to INR reference rates (ECB business days only).
+    columns:
+      - name: rate_date
+        tests: [not_null]
+  - name: stg_company_profiles
+    description: Latest sector / market cap / beta snapshot per ticker.
+    columns:
+      - name: ticker
+        tests: [not_null, unique]

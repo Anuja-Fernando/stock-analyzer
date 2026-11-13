@@ -1,0 +1,28 @@
+   [build-system]
+   requires = ["setuptools>=64"]
+   build-backend = "setuptools.build_meta"
+
+   [project]
+   name = "portfolio_risk"
+   version = "0.1.0"
+   requires-python = ">=3.10,<3.12"
+   dependencies = [
+       "dagster",
+       "dagster-dbt",
+       "dbt-mysql==1.7.0",
+       "yfinance",
+       "sqlalchemy>=2.0",
+       "pymysql",
+       "cryptography",
+       "requests",
+       "mysql-connector-python==8.0.33",
+   ]
+
+   [project.optional-dependencies]
+   dev = ["dagster-webserver", "dagster-dg-cli","fastapi","uvicorn[standard]"]
+
+   [tool.setuptools.packages.find]
+   where = ["src"]
+
+   [tool.dagster]
+   module_name = "portfolio_risk.definitions"

@@ -1,0 +1,12 @@
+version: 2
+
+sources:
+  - name: stocks_raw
+    schema: stocks_raw
+    tables:
+      - name: stock_prices
+        meta: {dagster: {asset_key: ["stock_prices"]}}
+      - name: fx_rates
+        meta: {dagster: {asset_key: ["fx_rates"]}}
+      - name: company_profiles
+        meta: {dagster: {asset_key: ["company_profiles"]}}

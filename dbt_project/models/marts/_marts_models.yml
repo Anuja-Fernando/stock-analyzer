@@ -1,0 +1,24 @@
+version: 2
+
+models:
+  - name: fct_positions_daily
+    description: One row per holding per trading day, valued in INR.
+    columns:
+      - name: ticker
+        tests: [not_null]
+      - name: trade_date
+        tests: [not_null]
+      - name: fx_rate_to_inr
+        description: Null means an unsupported currency or missing FX history.
+        tests: [not_null]
+      - name: market_value_inr
+        tests: [not_null]
+  - name: fct_portfolio_daily
+    description: Portfolio value, daily return, drawdown and 30-day annualized volatility.
+    columns:
+      - name: trade_date
+        tests: [not_null, unique]
+      - name: portfolio_value_inr
+        tests: [not_null]
+  - name: risk_alerts
+    description: Threshold breaches on the latest trading day (empty table = no alerts).
